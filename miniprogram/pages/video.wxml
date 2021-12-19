@@ -1,0 +1,20 @@
+<view style="display:flex;justify-content:center;width:100%;height:5vh;align-items:center;text-align:center;font-size:80%">{{title}}</view>
+<txv-video height="45vh" bindtap="tap"  id="tv" bindfullscreenchange="fullscreen"  bindtimeupdate="time" bindstatechange="bindstate" bindplay="bindplay" bindpause="bindpause" vid="{{vid}}" wx:if="{{vid}}" playerid="{{vid}}" title="{{title}}" playBtnPosition="center" autoplay="{{true}}" bindended="bindended">
+<!-- <cover-view wx:if="{{blockplus}}" style="position:absolute;background-color:white;width:100%;top:5vh;z-index:1;text-align:center">我是字幕遮挡君</cover-view> -->
+<cover-view catchtouchmove="move" id="cover" style="opacity:{{hide?0.2:1}};position:absolute;border-radius:{{!hide?0:20}}%; background-color:white;width:{{!hide?85:10}}%;margin-left:7.5%;top:{{height}}px;z-index:1;display:flex;justify-content:space-between;align-items:center;height:{{bSize*1.5}}px">
+<button hidden="{{hide}}" bindtap='back'  style="margin-left:2%;padding:0;width:10%;text-align:start;font-size:{{bSize*0.5}}px">-3s</button>
+<button hidden="{{hide}}" bindlongpress="size" bindtap="switch" style="width:70%;text-align:center;font-size:{{bSize}}px">我是字幕遮挡君</button>
+<button hidden="{{!hide}}" bindlongpress="size" bindtap="switch" style="width:70%;text-align:center;font-size:{{bSize}}px">遮</button>
+<button bindtap='speed' wx:if="{{speed==1}}" hidden="{{hide}}" style="margin-right:2%;padding:0;width:10%;text-align:end;font-size:{{bSize*0.5}}px">x1.0</button>
+<button bindtap='speed' wx:if="{{speed==0.5}}" hidden="{{hide}}" style="margin-right:2%;padding:0;width:10%;text-align:end;font-size:{{bSize*0.5}}px">x0.5</button>
+<button bindtap='speed' wx:if="{{speed==0.8}}" hidden="{{hide}}" style="margin-right:2%;padding:0;width:10%;text-align:end;font-size:{{bSize*0.5}}px">x0.8</button>
+</cover-view>
+</txv-video>
+<view style="justify-content:center;width:100%;height:5vh;align-items:flex-end;display:flex;font-size:80%">更多精彩内容请<text bindtap="pa" style="color: #2E64BD;font-size:120%">关注</text>公众号蝙蝠听写</view>
+<!-- <view style="height:20vh;width:100%;background-color:white">下一视频</view>
+<txv-video  vid="{{vid}}" wx:if="{{vid}}" playerid="2" width="45%"><cover-view style="position:absolute;background-color:white;width:100%;bottom:5vh;z-index:1;text-align:center">我是字幕遮挡君</cover-view></txv-video> -->
+<!-- <view hidden="{{!adEnd}}" bindtap="pa" style="position:absolute;bottom:1%;width:100%;text-align:center;font-size:80%;color: #2E64BD">
+ </view> -->
+ <view hidden="{{adEnd}}" style="position:absolute;width:90%;bottom:1%;margin-left:5%">
+  <ad unit-id="adunit-c08c3248fd5df92e" ad-type="video" ad-theme="white"></ad>
+</view>

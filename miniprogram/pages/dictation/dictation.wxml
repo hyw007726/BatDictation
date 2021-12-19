@@ -1,0 +1,76 @@
+
+<view bindtap="showVocab" wx:if="{{picShow}}" style="position:absolute;z-index:2;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background-color:black">
+<image bindload="picLoaded" style="transform:scale(1.5);opacity:1" mode="aspectFit" src="{{vPicSrc}}" ></image>
+</view>
+
+<text hidden="{{!vPicSrc}}" bindtap='showVocab' style="position:absolute;z-index:1;right:1%;height:5vw;width:5vw;font-size:80%;color:#0066FF">词</text>
+  <!-- 标题 -->
+<view style="width:100%;font-size:75%;margin:0 auto;height:10vh;text-align:center;justify-content:center;align-items:center;display:flex">  {{titleV}} </view>
+  <!-- 文本框 -->
+<view id="upper" style="position:absolute;width:100%;height:30vh;top:10vh">
+
+  <view catchtap="correct" style="display:flex;width:90%;height:100%;border:1px solid black;margin-left:5%;padding:2% 3%;border-radius:2%;font-size:120%;box-sizing:border-box;">
+    <text  wx:if="{{mode==0}}" hidden="{{!submitted}}" style="position:absolute;padding:1%;width:85%">{{currentText}}</text>      
+    <view  style="align-self:flex-end;width:100%;font-size:60%">
+      <text hidden="{{false}}" style="float:left;opacity:0.5">{{order}}
+  </text>
+      <text hidden="{{!submitted}}" style="float:right;opacity:0.5"> 答对单词:{{rightWords}}/{{rightAnsLength}}个</text></view>
+      
+      <textarea wx:if="{{mode==0}}" hidden="{{submitted}}" style="width:85%;position:absolute;padding:0" auto-focus="true" bindinput="input" hold-keyboard='true' name='ta' focus="{{focus}}" maxlength="-1" show-confirm-bar="{{false}}" value="{{currentText}}" placeholder='{{}}'>
+      
+        </textarea>
+      
+        <scroll-view wx:if="{{mode==1}}" scroll-y='true'  style="width:85%;position:absolute;padding:0">
+        <view hidden="{{ifPlay&&!submitted}}" style="width:100%">
+      <block  wx:for="{{wordSet}}">
+  <text bindtouchstart="touchWord"  id='{{item}}' >{{item+" "}}</text>
+    </block>
+  </view>
+      
+    <view style="width:100%;text-align:center;display:flex;flex-direction:column;align-items:center" >
+      <view hidden="{{ifPlay}}" style="text-align:center;width:100%;margin-top:10%;">{{wordSet.length==0?"请按顺序点选下方单词":''}}</view>
+         <view hidden="{{!ifPlay}}" style="width:100%;margin-top:10%;text-align:center" >请记住听到的句子</view>
+          <view hidden="{{!ifPlay}}"><image  src="{{speaker}}" mode="aspectFit" style="width:13vw;height:13vw"></image>
+          </view>
+    </view>
+    
+    </scroll-view>
+  </view>
+
+    </view>
+<!-- 按钮区 -->
+<view class="box" id='buttonBox' style="display:flex;position:absolute;top:40vh;height:10vh;align-items:center;width:90%;margin:auto 5%">
+          <button type='primary' bindtap='playOrPause' style="font-size:35rpx;width:25%;padding:1%;background-image:linear-gradient(90deg, #2E64BD, #0FB2FA);color:white">         
+           <view hidden="{{ifPlay}}" style="">播 放</view>
+          <view hidden="{{!ifPlay}}" style="">停 止</view>
+          </button>
+          <button bindtap='loopSwitch' style="font-size:70%;width:12%;padding:1%;background-image:{{loop?'linear-gradient(90deg, #2E64BD, #0FB2FA)':'#F4F4F4'}};color:{{loop?'white':'#009DF7'}}">循环</button>
+          <button bindtap='slowSwitch' style="font-size:70%;width:12%;padding:1%;background-image:{{slow?'linear-gradient(90deg, #2E64BD, #0FB2FA)':'#F4F4F4'}};color:{{slow?'white':'#009DF7'}}">慢速</button>
+
+      <button disabled="{{currentSen==0}}"  bindtap='prevSen' type='primary' style='font-size:60%;width:12%;padding:1%;background-image:linear-gradient(90deg, #2E64BD, #0FB2FA);color:white'>上一句</button>
+         <button form-type="submit" bindtap='nextSen' type='primary' style='width:25%;font-size:35rpx;padding:1%;background-image:linear-gradient(90deg, #2E64BD, #0FB2FA);color:white'>
+         <view hidden="{{!submitted&&mode!=1}}">{{currentSen+1==senTotal?'重新开始':'下一句'}}</view>
+         <view hidden="{{submitted||mode==1}}">提交</view>
+        </button>
+        
+      </view>
+<!-- 参考答案区 -->
+<!-- <scroll-view scroll-y style='width:94%;padding:1%; height:50%;border:1px solid #ddd; box-sizing:border-box; margin:1% 3% 1% 3%; display:block;background-color:#d7f0d8; border-radius:10rpx'>
+         
+          <text hidden="{{!submitted}}" style="opacity:0.5;color:blue">{{anno}}</text>
+           <view hidden="{{!submitted}}" style="color:#FF33FF">{{transcript}}</view>
+        </scroll-view> -->
+      <scroll-view scroll-y style="position:absolute;top:50vh;width:86%;height:35vh;border:1px solid black;margin-left:5%;margin-top:1%;border-radius:2%;padding:2%">
+      <text hidden="{{!finSen}}">{{currentAns}}</text>
+      <text hidden="{{!finSen}}">{{anno}}</text>
+      <view hidden="{{!finSen}}" style="margin-top:5%">{{currentTrans}}</view>
+      <block wx:if="{{mode==1}}" hidden="{{ifPlay||finSen}}" wx:for='{{currentSetR}}'>
+    <button hidden="{{finSen}}" bindtap="tapWord" style="font-size:120%;line-height:99%;padding:2%;margin-left:1%;margin-top:1%;opacity:{{chosenSet[index]}};color:{{(chosenSet[index]==0.5)?'black':'#2E64BD'}};border-color:{{wrongIndex==index?'red':'black'}}" id='{{index}}' plain size='mini'>{{item}}</button>
+    </block>
+      </scroll-view>
+  
+  <!-- 反馈区 -->
+  <view class="box" id='fbBox' style="position:absolute;bottom:0.5%;width:100%;text-align:center;opacity:0.5;"><button size="mini" style="font-size:50%" open-type="contact" >问题与建议</button>
+ </view>
+
+  

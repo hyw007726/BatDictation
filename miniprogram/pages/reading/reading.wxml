@@ -1,0 +1,4 @@
+<!--pages/reading/reading.wxml-->
+<text>字数：{{wc}}</text>
+<text>{{a}}</text>
+

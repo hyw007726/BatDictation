@@ -1,0 +1,58 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
+        },
+        {
+          "name": "today",
+          "pathName": "pages/list/list",
+          "query": "today=210909",
+          "scene": null
+        },
+        {
+          "name": "cet6",
+          "pathName": "pages/list/list",
+          "query": "list=cet6",
+          "scene": null
+        },
+        {
+          "name": "v",
+          "pathName": "pages/video",
+          "query": "v=10",
+          "scene": null
+        },
+        {
+          "name": "pages/contents/contents",
+          "pathName": "pages/contents/contents",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "reading",
+          "pathName": "pages/reading/reading",
+          "query": "",
+          "scene": null,
+          "partialCompile": {
+            "enabled": true,
+            "pages": []
+          }
+        }
+      ]
+    }
+  }
+}

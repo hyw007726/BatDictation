@@ -1,0 +1,6 @@
+{ "disableScroll":true,
+  "usingComponents": {
+    "audio-player": "plugin://myPlugin/audio-player",
+    "mp-icon": "weui-miniprogram/icon/icon"
+  }
+}

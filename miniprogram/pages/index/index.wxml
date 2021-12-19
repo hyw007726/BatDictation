@@ -1,0 +1,31 @@
+<open-data hidden type="userNickName"></open-data>
+<open-data hidden type="userAvatarUrl"></open-data>
+
+<!-- <view style="position:absolute;height:4vh;width:100%;text-align:center;">
+<view bindtap="article" id='test' style="font-size:22rpx;padding:0.5vh; display:inline">关注<view style="color:#0066FF; display:inline" bindtap="article" id='pub'>公众号</view>可打卡最新视频材料，加入打卡群可获得更多支持</view>
+</view> -->
+
+
+<!-- 主页按钮 -->
+<view wx:if="{{!zhenti}}" bindtap="toLists" style="position:absolute;width:100vw;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center">
+<button id='wordDict' type="primary" style="width:50%; margin-bottom:3%;padding:5% 0;background-image: linear-gradient(90deg, #2E64BD, #0FB2FA); font-size:130%">单词听写</button>
+<!-- <button id='cet4' type="default" style="width:90%; margin:5%; font-size:120%">四级精听</button> -->
+<button id='aca' type="primary" style="width:50%; margin-bottom:3%;padding:5% 0;background-image: linear-gradient(90deg, #2E64BD, #0FB2FA);  font-size:130%">真题听写</button>
+
+<button id='news' type="primary" style="width:50%; margin-bottom:3%;padding:5% 0;background-image: linear-gradient(90deg, #2E64BD, #0FB2FA);  font-size:130%">新闻听写</button>
+<button id='video' type="primary" style="width:50%; margin-bottom:3%;padding:5% 0;background-image: linear-gradient(90deg, #2E64BD, #0FB2FA);  font-size:130%">精选视频</button>
+</view>
+<view wx:if="{{zhenti}}" bindtap="zhenti" style="position:absolute;width:100vw;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center">
+<button id='cet6' type="primary" style="width:50%; margin-bottom:3%;padding:5% 0;background-image: linear-gradient(90deg, #2E64BD, #0FB2FA); font-size:130%">六级听写</button>
+<button id='tem4' type="primary" style="width:50%; margin-bottom:3%;padding:5% 0;background-image: linear-gradient(90deg, #2E64BD, #0FB2FA);  font-size:130%">专四听写</button>
+<button id='back' type="primary" style="width:50%; margin-bottom:3%;padding:5% 0;background-image: linear-gradient(90deg, #2E64BD, #0FB2FA);  font-size:130%">返回</button>
+</view>
+
+<canvas type="2d" id="myCanvas" style="position:absolute;z-index:-1;width:100vw;height:100vh"></canvas>
+
+<!-- <view hidden style="position:absolute; bottom:1%;width:94%;margin:2%">
+<ad unit-id="adunit-09677ceca3de6375"></ad>
+</view> -->
+<view bindtap="pa" style="position:absolute;bottom:1%;width:100%;text-align:center;font-size:80%;color: #2E64BD">关注公众号
+ </view>
+ 

@@ -1,0 +1,41 @@
+<!--miniprogram/pages/wordDict/wordDict.wxml-->
+<!-- <view>{{word}}-->
+<view  style="position:absolute;display:flex;justify-content:space-between;width:90vw;font-size:80%;margin-top:-0.25vh;margin-left:5vw"> 
+  <!-- <view bindtap="challenge" wx:if="{{mode==1}}" style="padding-top:2%;color:#2E64BD">
+  挑战模式
+  </view>  -->
+  <view hidden="{{mode==1}}">
+  <view>本次听写：{{curCount}}词</view>本次得分：{{point}}
+  </view> 
+
+<view hidden="{{mode==1}}" style="font-size:120%;margin-top:1vh">倒计时：{{countdown}}s</view>
+
+<view hidden="{{mode==1}}">总共听写：{{tCount}}词<view></view>最高得分：{{best}}分</view>
+</view>
+
+<view style="align-items:center;height:18vh;display:flex;flex-direction:column;justify-content:center;margin:1vh 2vw;width:94vw;padding-top:3vh">
+
+<view hidden="{{!showipa}}" style="font-size:120%;text-align:center">{{ipa}}</view>
+<view bindtap="play" style="width:50%;justify-content:center;display:flex"><image src="{{speaker}}" mode="aspectFit" style="width:13vw;height:13vw"></image></view>
+
+</view>
+
+
+<form bindsubmit="submit" >
+<view style="height:10vh;margin:0.5vh 4vw">
+<view>请输入听到的单词：<view hidden="{{mode==1}}" bindtap="ifipa" style="float:right;color:blue">{{showipa?'隐藏':'显示'}}音标</view> </view>
+<textarea name='textarea' value="{{input}}" auto-focus="" focus="{{focus}}" style="border:0.25vw solid black;box-shadow:0.25vw 0.25vw;width:90vw;height:100%;padding:1vw"></textarea>
+</view>
+
+
+<view style="display:flex;margin-top:8vh"><button  bindtap="play"  style="background-image:linear-gradient(90deg, #2E64BD, #0FB2FA);color:white">播放</button><button form-type="submit" style="background-image:linear-gradient(90deg, #2E64BD, #0FB2FA);color:white">{{submitted?'开始':'提交'}}</button></view>
+</form>
+
+<view hidden="{{prevWords==''}}"  style="size:20%;text-align:center;margin-top:1vh;width:88vw;margin-left:6vw">
+<text bindtap="wordBack" hidden="{{wHis==-1}}" style="color:blue;float:left;opacity:{{wHis<1?0.5:1}}">←</text>复制单词“<text bindtap="tapWord" style="color:blue">{{prevWords}}</text>”至剪贴板<text bindtap="wordForward" hidden="{{wHis==-1}}" style="color:blue;float:right;opacity:{{wHis<wordHis.length-1?1:0.5}}">→</text>
+</view>
+
+<view style="position:absolute;width:100%;bottom:0">
+<!-- <ad unit-id="adunit-4f7e8cfedf8a8da4" ad-type="grid" grid-opacity="0.8" grid-count="5" ad-theme="white"></ad> -->
+<ad unit-id="adunit-c08c3248fd5df92e" ad-type="video" ad-theme="white"></ad>
+</view>

@@ -1,0 +1,69 @@
+
+<!-- <view style="display:flex;position:absolute;top:4vh;height:3vh;width:80%;margin-left:10%;padding:0;border:1px solid">
+   <view style="display:flex;justify-content:center;font-size:25rpx;width:15%">
+ 更新日期
+   </view>
+   <view style="display:flex;justify-content:center;font-size:27rpx;width:65%">
+      
+     材料标题
+    
+   </view>
+  
+      <view style="display:flex;justify-content:center;font-size:25rpx;width:20%">打卡状态
+      </view>
+
+</view> -->
+<view bindtap="toWord" wx:if="{{picShow}}" style="position:absolute;z-index:2;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background-color:black">
+<image bindload="picLoaded" style="transform:scale(1.5);opacity:1" mode="aspectFit" src="{{wordPic}}" ></image>
+</view>
+
+<view style="position:absolute;top:4vh; width:100%; display:flex">
+<view hidden="{{!(matType=='news')}}" style="margin:auto">最新听写材料</view>
+<view hidden="{{!(matType=='cet6')}}" style="margin:auto">六级听力真题</view>
+<view hidden="{{!(matType=='tem4')}}" style="margin:auto">专四听力真题</view>
+</view>
+
+<scroll-view bindrefresherpulling="refreshed" refresher-triggered="{{ifRefresh}}" refresher-enabled scroll-y bindscrolltolower="scrollBottom" style="display:flex;flex-direction:column;position:absolute;top:10vh;width:80%;height:60vh;margin-left:10%;border-top:1rpx solid black;border-bottom:1rpx solid black;padding:1%">
+
+<view  style="display:flex;flex-direction:column;height:10vh;border-bottom:1rpx solid #DCDECE;width:100%;padding:1vh 0"  wx:for="{{matIds}}" wx:key="titleChosen">
+<view bindtap="word" id="{{index}}" style="width:100%;display:flex;align-items:center; height:6vh;justify-content:center;color:{{item.ifChecked?'#04BE02':'black'}}">
+<view wx:if="{{matType=='news'}}" style="display:flex;justify-content:center;font-size:25rpx;width:15%;align-self:start">{{item.date}}</view>
+   <view style="display:flex;justify-content:center;font-size:25rpx;width:{{matType=='news'?'75%':'100%'}};margin-left:{{matType=='news'?'5%':'0'}}" >
+     {{item.t+(item.ifChecked?' ✔︎':'')}}
+    
+</view>
+
+</view>
+<view style="width:100%;display:flex;padding-top:1vh;height:4vh;align-items:center;font-size:80%">
+<view wx:if="{{!ifPlay||playingID!=index}}" bindtap="toPlay" id="{{index}}" style="width:40%;text-align:center;color:#0066FF">
+<mp-icon color="#0066FF" type="field" icon="play2"  size="{{20}}"></mp-icon>播放
+</view>
+<view wx:if="{{ifPlay&&playingID==index}}" bindtap="toPlay" id="{{index}}" style="width:40%;text-align:center;color:#0066FF">
+<mp-icon color="#0066FF" type="field" icon="pause"  size="{{20}}"></mp-icon>暂停
+</view>
+<view hidden="{{matType!='news'|!vip}}" bindtap="toV" id="{{index}}" style="width:40%;text-align:center;color:#0066FF"><mp-icon color="#0066FF" type="field" icon="video-call"  size="{{20}}"></mp-icon>视频</view>
+<view hidden="{{matType!='news'}}" bindtap="toWord" id="{{index}}" style="width:50%;text-align:center;color:#0066FF"><mp-icon color="#0066FF" type="field" icon="note"  size="{{20}}"></mp-icon>提示词</view>
+<view bindtap="toD" id="{{index}}" style="width:50%;text-align:center;color:#0066FF"><mp-icon color="#0066FF" type="field" icon="pencil"  size="{{20}}"></mp-icon>进入听写</view>
+</view>
+</view>
+</scroll-view>
+
+<view style="position:absolute;top:70vh;display:flex;flex-direction:column;width:100%;justify-content:center;align-items:center">
+<view style="width:100%"> <text style="float:right;font-size:70%;margin-right:5%">
+{{matType=='news'?('您已完成'+totalChecked+'篇'):''}}
+</text>
+</view>
+<view hidden="{{matIds.length==0}}" bindtap="chooseMode" style="font-size:90%;padding-top:3%">
+练习模式：<text style="font-weight:bold;color:#0066FF">{{modeChosen}}▼</text>
+</view>
+
+</view>
+<view style="position:absolute;bottom:0vh;display:flex;flex-direction:column;width:100%">
+<audio-player isPlay="{{ifPlay}}" title="{{audioName}}" btnColor="{{'#0066FF'}}" sliderBtnColor="{{'#0066FF'}}" src="{{audioSrc}}" style="width:90%"></audio-player>
+</view>
+
+
+
+<text hidden="{{vip||matType!='news'}}" bindtap='vipBuy' style="position:absolute;right:1%;font-size:70%;padding:1%;color:#0066FF">购买会员</text>
+<!-- <text hidden="{{vip||matType!='news'}}" style="position:absolute;left:1%;font-size:70%;padding:1%">剩余听写篇数：30次</text> -->
+<canvas type="2d" id="myCanvas" style="position:absolute;z-index:-1;width:100vw;height:100vh"></canvas>

@@ -1,0 +1,28 @@
+
+  
+
+
+<view style="position:absolute;top:4vh; width:100%; display:flex">
+<view style="margin:auto">公众号精选视频</view>
+</view>
+
+<scroll-view bindrefresherpulling="refreshed" refresher-triggered="{{ifRefresh}}" refresher-enabled scroll-y bindscrolltolower="scrollBottom" style="display:flex;flex-direction:column;position:absolute;top:10vh;width:80%;height:60vh;margin-left:10%;border-top:1rpx solid black;border-bottom:1rpx solid black;padding:1%">
+
+<view  style="display:flex;flex-direction:column;border-bottom:1rpx solid #DCDECE;width:100%;padding:1vh 0"  wx:for="{{matIds}}" wx:key="titleChosen">
+<view style="width:100%;display:flex;align-items:center; justify-content:center">
+   <view bindtap="toV" id="{{index}}" style="display:flex;justify-content:center;font-size:32rpx;text-align:center;color:#0000FF" >
+     {{item.t}}
+</view>
+
+</view>
+
+</view>
+</scroll-view>
+
+
+
+
+
+
+
+<canvas type="2d" id="myCanvas" style="position:absolute;z-index:-1;width:100vw;height:100vh"></canvas>

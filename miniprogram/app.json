@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/list/list",
+    "pages/dictation/dictation",
+    "pages/webview/webview",
+    "pages/wordDict/wordDict",
+    "pages/video",
+    "pages/reading/reading"
+  ],
+  "resizable": true,
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0095EA",
+    "navigationBarTitleText": "蝙蝠听写",
+    "navigationBarTextStyle": "white",
+    "restartStrategy": "homePageAndLatestPage"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "plugins": {
+    "myPlugin": {
+      "version": "1.0.0",
+      "provider": "wxbb9d84aea28a6dba"
+    },
+    "tencentvideo": {
+      "version": "1.4.9",
+      "provider": "wxa75efa648b60994b"
+    }
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "useExtendedLib": {
+    "weui": true
+  }
+}
